@@ -9,6 +9,7 @@ namespace ContactDLL.Services
     class PersonneSeeder
     {
         public Faker faker { get; set; }
+        
         public PersonneSeeder()
         {
             faker = new Faker("fr");
