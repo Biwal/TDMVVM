@@ -1,5 +1,6 @@
 ﻿
 using Bogus;
+using ContactDLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,13 +16,8 @@ namespace ContactDLL
         public List<Personne> ListPersonnes { get => listPersonnes; set => listPersonnes = value; }
 
         private PersonneSingleton() {
-            var faker = new Faker("fr");
             ListPersonnes = new List<Personne>();
-            for (int i = 0; i < 25; i++)
-            {
-                ListPersonnes.Add(new Ami(faker.Name.FirstName(), faker.Name.LastName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), faker.Date.Past(), faker.Phone.PhoneNumberFormat()));
-                ListPersonnes.Add(new Client(faker.Name.FirstName(), faker.Name.LastName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(),Int32.Parse(faker.Finance.Account()) , faker.Random.Guid().ToString() ,faker.Date.Past()));
-            }
+            ListPersonnes = new PersonneSeeder().seed();
        }
 
         public static PersonneSingleton Instance
