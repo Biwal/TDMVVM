@@ -16,7 +16,6 @@ namespace ContactDLL
         public List<Personne> ListPersonnes { get => listPersonnes; set => listPersonnes = value; }
 
         private PersonneSingleton() {
-            ListPersonnes = new List<Personne>();
             ListPersonnes = new PersonneSeeder().seed();
        }
 

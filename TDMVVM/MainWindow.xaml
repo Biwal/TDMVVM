@@ -7,29 +7,32 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Views="clr-namespace:TDMVVM.Views" x:Class="TDMVVM.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="566" Width="984"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"        
+        TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <DataTemplate x:Key="PersonneTemplate">
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-          Padding="5" Margin="5">
-                <StackPanel>
-                    <TextBlock Text="{Binding Prenom}"   />
-                    <TextBlock Text="{Binding Nom}"/>
-                    <TextBlock Text="{Binding Email}"/>
-                </StackPanel>
-            </Border>
-  
+
+            <StackPanel Background="{DynamicResource MaterialDesignPaper}" Margin="1 0">
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} - {1}">
+                            <Binding Path="Prenom"/>
+                            <Binding Path="Nom"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="{Binding Telephone}"/>
+                <TextBlock Text="{Binding Email}"/>
+            </StackPanel>
+
         </DataTemplate>
     </Window.Resources>
-
-
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,11 +43,10 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="1" Grid.Column="0" Background="Green" ItemsSource="{Binding}" ItemTemplate="{StaticResource PersonneTemplate}"/>
-        <WrapPanel Grid.Row="0"  Background="Blue" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0">
+        <ListBox Grid.Row="1" Grid.Column="0"  ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource PersonneTemplate}" Background="{DynamicResource PrimaryHueDarkBrush}"/>
+        <WrapPanel Grid.Row="0"  Background="{DynamicResource MaterialDesignPaper}" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0">
             <Button  VerticalAlignment="Center" Content="Nouveau" Padding="16,4" Margin="0" />
             <Button  VerticalAlignment="Center" Content="Nouveau" VerticalContentAlignment="Center" Margin="1,0,0,0" />
-
         </WrapPanel>
         <GridSplitter Grid.Column="0" 
                       Grid.Row="1"
@@ -53,7 +55,8 @@
               Background="White" 
               ShowsPreview="true"
               Width="5"/>
-        <Views:ucContact Grid.Column="1" HorizontalAlignment="Center" Height="100"  Grid.Row="1" VerticalAlignment="Center" Width="100"/>
+
+        <Views:ucContact Grid.Column="1" HorizontalAlignment="Center" Height="356"  Grid.Row="1" VerticalAlignment="Stretch" Width="578" />
     </Grid>
 
 

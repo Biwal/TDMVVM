@@ -24,9 +24,13 @@ namespace TDMVVM
         public List<Personne> ListPersonnes = new List<Personne>();
         public MainWindow()
         {
-
             InitializeComponent();
             this.DataContext = PersonneSingleton.Instance.ListPersonnes;
+
+        }
+
+        private void ucContact_Loaded(object sender, RoutedEventArgs e)
+        {
 
         }
     }
