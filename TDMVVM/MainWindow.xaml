@@ -17,15 +17,11 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <DataTemplate x:Key="PersonneTemplate">
-
             <StackPanel Background="{DynamicResource MaterialDesignPaper}" Margin="1 0">
-                <TextBlock Text="{Binding Identite}">
-                   
-                </TextBlock>
+                <TextBlock Text="{Binding Identite}"/>
                 <TextBlock Text="{Binding Contact.Telephone}"/>
                 <TextBlock Text="{Binding Contact.Email}"/>
             </StackPanel>
-
         </DataTemplate>
     </Window.Resources>
 

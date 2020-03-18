@@ -26,9 +26,6 @@ namespace TDMVVM
         {
             InitializeComponent();
             this.DataContext = new ViewModels.ListeContactsVueModele();
-            /*  lstbox.ItemsSource = PersonneSingleton.Instance.ListPersonnes;
-              this.DataContext = PersonneSingleton.Instance.ListPersonnes;*/
-
         }
 
         private void ucContact_Loaded(object sender, RoutedEventArgs e)
