@@ -79,7 +79,8 @@
                         <fa:FontAwesome Icon="Search" />
                     </MenuItem.Icon>
                     <TextBox MinHeight="25" MinWidth="100" Text="{Binding TexteRechercher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-             CharacterCasing="Upper" ToolTip="Recherche sur le nom, prénom ou la société." />
+    Background="{Binding TexteRechercherNoMatch, Converter={StaticResource BoolToBackgroundConverter}}"
+             CharacterCasing="Upper"  />
                 </MenuItem>
             </Menu>
         </WrapPanel>

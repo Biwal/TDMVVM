@@ -69,6 +69,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToBackgroundConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="ViewModels\ContactVueModele.cs" />
     <Compile Include="ViewModels\ListeContactsVueModele.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />

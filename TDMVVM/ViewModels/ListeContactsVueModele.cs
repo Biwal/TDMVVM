@@ -108,12 +108,18 @@ namespace TDMVVM.ViewModels
             return false;
         }
 
+        //Pour le setter : si la recherche est vide, on applique un style différent
+        public bool TexteRechercherNoMatch
+        {
+            get { return collectionView.IsEmpty; }
+        }
         //Propriété récupérant le texte de recherche saisi
         public string TexteRechercher
         {
             set
             {
                 collectionView.Filter = item => IsMatch(item, value);
+                OnPropertyChanged("TexteRechercherNoMatch");
             }
         }
         // Méthode appellée pour chaque élément de la collection

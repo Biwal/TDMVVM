@@ -23,6 +23,25 @@ namespace TDMVVM.ViewModels
             get { return Contact.Prenom + "  " + Contact.Nom; }
         }
 
+        // Pour gérer l'affichageen fonction du type de contact
+        public bool EstClient
+        {
+            get
+            {
+                if (contact.GetType() == typeof(Client)) return true;
+                return false;
+            }
+        }
+
+        public bool EstAmi
+        {
+            get
+            {
+                if (contact.GetType() == typeof(Ami)) return true;
+                return false;
+            }
+        }
+
         //Initialisation de la vue modèle avec l'entité modèle
         public ContactVueModele(Personne personne)
         {
