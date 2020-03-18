@@ -21,16 +21,10 @@ namespace TDMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Personne> ListPersonnes = new List<Personne>();
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new ViewModels.ListeContactsVueModele();
-        }
-
-        private void ucContact_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

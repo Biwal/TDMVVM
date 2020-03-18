@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:TDMVVM"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:Views="clr-namespace:TDMVVM.Views" x:Class="TDMVVM.MainWindow"
+        xmlns:Views="clr-namespace:TDMVVM.Views" 
+        x:Class="TDMVVM.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="566" Width="984"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,18 +19,27 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <DataTemplate x:Key="PersonneTemplate">
-            <StackPanel Background="{DynamicResource MaterialDesignPaper}" Margin="1 0">
-                <TextBlock Text="{Binding Identite}"/>
-                <TextBlock Text="{Binding Contact.Telephone}"/>
-                <TextBlock Text="{Binding Contact.Email}"/>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" MinWidth="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <fa:FontAwesome Icon="User" Grid.Column="0" Grid.Row="0"/>
+                <fa:FontAwesome Icon="MobilePhone" Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Text="{Binding Identite}" Grid.Column="1" Grid.Row="0"/>
+                <TextBlock Text="{Binding Contact.Telephone}" Grid.Column="1" Grid.Row="1"/>
+            </Grid>
         </DataTemplate>
     </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -36,8 +47,41 @@
         </Grid.RowDefinitions>
         <ListBox IsSynchronizedWithCurrentItem="true"  Grid.Row="1" Grid.Column="0"  x:Name="lstbox" ItemsSource="{Binding ListeContacts}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource PersonneTemplate}" Background="{DynamicResource PrimaryHueDarkBrush}"/>
         <WrapPanel Grid.Row="0"  Background="{DynamicResource MaterialDesignPaper}" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0">
-            <Button  VerticalAlignment="Center" Content="Nouveau" Padding="16,4" Margin="0" />
-            <Button  VerticalAlignment="Center" Content="Nouveau" VerticalContentAlignment="Center" Margin="1,0,0,0" />
+            
+            <Menu>
+                <MenuItem >
+                    <MenuItem.Icon>
+                        <fa:FontAwesome Icon="Sort" />
+                    </MenuItem.Icon>
+                    <MenuItem Header="Tri par défaut" Command="{Binding CommandeTrier}" />
+                    <MenuItem Header="Trier par Nom" Command="{Binding CommandeTrier}" CommandParameter="Contact.Nom" />
+                    <MenuItem Header="Trier par Prénom" Command="{Binding CommandeTrier}" CommandParameter="Contact.Prenom" />
+                </MenuItem>
+                <MenuItem Command="{Binding CommandePrecedent}" >
+                    <MenuItem.Icon>
+                        <fa:FontAwesome Icon="ArrowLeft" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding CommandeSuivant}"  >
+                    <MenuItem.Icon>
+                        <fa:FontAwesome Icon="ArrowRight" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Icon>
+                        <fa:FontAwesome Icon="Plus" />
+                    </MenuItem.Icon>
+                    <MenuItem Header="Nouveau Client"/>
+                    <MenuItem Header="Nouveau Ami"/>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Icon>
+                        <fa:FontAwesome Icon="Search" />
+                    </MenuItem.Icon>
+                    <TextBox MinHeight="25" MinWidth="100" Text="{Binding TexteRechercher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             CharacterCasing="Upper" ToolTip="Recherche sur le nom, prénom ou la société." />
+                </MenuItem>
+            </Menu>
         </WrapPanel>
         <GridSplitter Grid.Column="0" 
                       Grid.Row="1"
