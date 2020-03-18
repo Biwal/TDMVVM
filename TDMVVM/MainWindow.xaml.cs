@@ -25,7 +25,9 @@ namespace TDMVVM
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = PersonneSingleton.Instance.ListPersonnes;
+            this.DataContext = new ViewModels.ListeContactsVueModele();
+            /*  lstbox.ItemsSource = PersonneSingleton.Instance.ListPersonnes;
+              this.DataContext = PersonneSingleton.Instance.ListPersonnes;*/
 
         }
 

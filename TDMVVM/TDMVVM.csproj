@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ContactVueModele.cs" />
+    <Compile Include="ViewModels\ListeContactsVueModele.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ucContact.xaml.cs">
       <DependentUpon>ucContact.xaml</DependentUpon>
     </Compile>

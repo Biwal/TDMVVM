@@ -19,16 +19,11 @@
         <DataTemplate x:Key="PersonneTemplate">
 
             <StackPanel Background="{DynamicResource MaterialDesignPaper}" Margin="1 0">
-                <TextBlock>
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} - {1}">
-                            <Binding Path="Prenom"/>
-                            <Binding Path="Nom"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
+                <TextBlock Text="{Binding Identite}">
+                   
                 </TextBlock>
-                <TextBlock Text="{Binding Telephone}"/>
-                <TextBlock Text="{Binding Email}"/>
+                <TextBlock Text="{Binding Contact.Telephone}"/>
+                <TextBlock Text="{Binding Contact.Email}"/>
             </StackPanel>
 
         </DataTemplate>
@@ -43,7 +38,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="1" Grid.Column="0"  ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource PersonneTemplate}" Background="{DynamicResource PrimaryHueDarkBrush}"/>
+        <ListBox IsSynchronizedWithCurrentItem="true"  Grid.Row="1" Grid.Column="0"  x:Name="lstbox" ItemsSource="{Binding ListeContacts}" HorizontalContentAlignment="Stretch" ItemTemplate="{StaticResource PersonneTemplate}" Background="{DynamicResource PrimaryHueDarkBrush}"/>
         <WrapPanel Grid.Row="0"  Background="{DynamicResource MaterialDesignPaper}" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Visible" Margin="0">
             <Button  VerticalAlignment="Center" Content="Nouveau" Padding="16,4" Margin="0" />
             <Button  VerticalAlignment="Center" Content="Nouveau" VerticalContentAlignment="Center" Margin="1,0,0,0" />
@@ -56,7 +51,7 @@
               ShowsPreview="true"
               Width="5"/>
 
-        <Views:ucContact Grid.Column="1" HorizontalAlignment="Center" Height="356"  Grid.Row="1" VerticalAlignment="Stretch" Width="578" />
+        <Views:ucContact Grid.Column="1" HorizontalAlignment="Center" Height="356"  Grid.Row="1" VerticalAlignment="Stretch" Width="578" DataContext="{Binding ContactSelected}"/>
     </Grid>
 
 
