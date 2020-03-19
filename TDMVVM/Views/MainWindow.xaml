@@ -71,7 +71,7 @@
                     <MenuItem.Icon>
                         <fa:FontAwesome Icon="Plus" />
                     </MenuItem.Icon>
-                    <MenuItem Header="Nouveau Client"/>
+                    <MenuItem Header="Nouveau Client" Command="{Binding CommandeNouveauClient}"/>
                     <MenuItem Header="Nouveau Ami" Command="{Binding CommandeNouvelAmi}"/>
                 </MenuItem>
                 <MenuItem >

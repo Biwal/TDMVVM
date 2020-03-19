@@ -19,12 +19,13 @@ namespace TDMVVM.ViewModels
         //vue permettant de naviguer dans la liste des contacts (filtre, tri, sélection courante)
         private  ICollectionView collectionView;
 
-        private ContactService cs = new ContactService();
+        private readonly ContactService cs = new ContactService();
 
         public ContactService CS
         {
             get { return cs; }
         }
+
 
         public void GetListeContacts()
         {
@@ -72,8 +73,10 @@ namespace TDMVVM.ViewModels
                 if (collectionView.CurrentItem == null) return null;
                 return (ContactVueModele)collectionView.CurrentItem;
             }
+            set => ContactSelected = value;
         }
 
+        #region Commandes
         private RelayCommand commandeSuivant;
         public ICommand CommandeSuivant
         {
@@ -158,7 +161,6 @@ namespace TDMVVM.ViewModels
                 return commandeTrier;
             }
         }
-
         // Tri de la CollectionView :
         // l'utilisation de la méthode DeferRefresh permet d'effectuer le tri qu'à la sortie de l'instruction.
         // sinon, la collection serait réarrangée à chaque fois, au clear puis à chaque Add  !!
@@ -184,7 +186,7 @@ namespace TDMVVM.ViewModels
             }
 
         }
-
+        #endregion
 
         private RelayCommand commandeNouvelAmi;
         public ICommand CommandeNouvelAmi
@@ -193,20 +195,58 @@ namespace TDMVVM.ViewModels
             {
                 if (commandeNouvelAmi == null)
                 {
-                    commandeNouvelAmi = new RelayCommand(GoNouvelAmi, CanGoNouvelAmi);
+                    commandeNouvelAmi = new RelayCommand(GoNouvelAmi);
                 }
                 return commandeNouvelAmi;
             }
         }
         public void GoNouvelAmi()
         {
-            Console.WriteLine(ContactSelected.Contact);
-           new ContactVueModele(null,this);
-            Console.WriteLine(ContactSelected.Contact);
+            checkAddForm();
+            listeContacts.Add(new ContactVueModele(new Ami(), this));
+
+            //définition de la collection view
+            collectionView = CollectionViewSource.GetDefaultView(listeContacts);
+            //ajout de l'événement à déclencher quand la vue courante change
+            collectionView.CurrentChanged += OnCollectionViewCurrentChanged;
+            //on se place sur le form
+            collectionView.MoveCurrentToLast();
+          /* ContactSelected = ;*/
         }
-        public bool CanGoNouvelAmi()
+
+        private RelayCommand commandeNouveauClient;
+        public ICommand CommandeNouveauClient
         {
-                return true;
+            get
+            {
+                if (commandeNouveauClient == null)
+                {
+                    commandeNouveauClient = new RelayCommand(GoNouveauClient);
+                }
+                return commandeNouveauClient;
+            }
+        }
+        public void GoNouveauClient()
+        {
+            checkAddForm();
+            listeContacts.Add(new ContactVueModele(new Client(), this));
+
+            //définition de la collection view
+            collectionView = CollectionViewSource.GetDefaultView(listeContacts);
+            //ajout de l'événement à déclencher quand la vue courante change
+            collectionView.CurrentChanged += OnCollectionViewCurrentChanged;
+            //on se place sur le form
+            collectionView.MoveCurrentToLast();
+            /* ContactSelected = ;*/
+        }
+
+
+        public void checkAddForm()
+        {
+            if (!(listeContacts[listeContacts.Count - 1].Contact.Id > 0))
+            {
+                listeContacts.RemoveAt(listeContacts.Count - 1);
+            }
         }
     }
 }

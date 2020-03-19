@@ -68,16 +68,10 @@ namespace TDMVVM.ViewModels
         {
             _parent.CS.AjouterContact(Contact);
             _parent.GetListeContacts();
+
             System.Windows.MessageBox.Show("Enregistrement du contact");
         }
 
-        public void AddContact()
-        {
-
-        }
-        public void PutAmi()
-        {
-        }
 
         private RelayCommand commandeSupprimer;
         public ICommand CommandeSupprimer
