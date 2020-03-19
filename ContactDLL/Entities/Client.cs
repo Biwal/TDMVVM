@@ -10,6 +10,8 @@ namespace ContactDLL
         private string guid;
         private DateTime anciennete;
 
+        public Client() { }
+
         public Client(string nom, string prenom, string email, string adresse, string telephone, int numClient, string guid, DateTime anciennete)
         {
             Nom = nom;

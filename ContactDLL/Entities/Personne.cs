@@ -6,11 +6,14 @@ namespace ContactDLL
 {
     public abstract class Personne
     {
+        private int id;
         private string nom;
         private string prenom;
         private string email;
         private string adresse;
         private string telephone;
+
+        public int Id { get => id; set => id = value; }
 
         public string Nom { get => nom; set => nom = value; }
 
@@ -21,5 +24,6 @@ namespace ContactDLL
         public string Adresse { get => adresse; set => adresse = value; }
 
         public string Telephone { get => telephone; set => telephone = value; }
+     
     }
 }

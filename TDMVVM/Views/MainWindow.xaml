@@ -30,7 +30,7 @@
                 </Grid.RowDefinitions>
                 <fa:FontAwesome Icon="User" Grid.Column="0" Grid.Row="0"/>
                 <fa:FontAwesome Icon="MobilePhone" Grid.Column="0" Grid.Row="1"/>
-                <TextBlock Text="{Binding Identite ,Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+                <TextBlock Text="{Binding Identite }" Grid.Column="1" Grid.Row="0"/>
                 <TextBlock Text="{Binding Contact.Telephone}" Grid.Column="1" Grid.Row="1"/>
             </Grid>
         </DataTemplate>
@@ -72,7 +72,7 @@
                         <fa:FontAwesome Icon="Plus" />
                     </MenuItem.Icon>
                     <MenuItem Header="Nouveau Client"/>
-                    <MenuItem Header="Nouveau Ami"/>
+                    <MenuItem Header="Nouveau Ami" Command="{Binding CommandeNouvelAmi}"/>
                 </MenuItem>
                 <MenuItem >
                     <MenuItem.Icon>

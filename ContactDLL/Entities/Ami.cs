@@ -9,6 +9,10 @@ namespace ContactDLL
         private DateTime anniversaire;
         private string telPerso;
 
+        public Ami()
+        {
+        }
+
         public Ami(string nom, string prenom, string email, string adresse, string telephone, DateTime anniversaire, string telPerso)
         {
             Nom = nom;

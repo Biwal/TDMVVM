@@ -1,4 +1,5 @@
 ﻿using ContactDLL;
+using ContactDLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,22 +17,26 @@ namespace TDMVVM.ViewModels
         //la liste des contacts via leur vue-modèle de représentation
         private readonly ObservableCollection<ContactVueModele> listeContacts;
         //vue permettant de naviguer dans la liste des contacts (filtre, tri, sélection courante)
-        private readonly ICollectionView collectionView;
-        
+        private  ICollectionView collectionView;
 
-        public ListeContactsVueModele()
+        private ContactService cs = new ContactService();
+
+        public ContactService CS
         {
-            //Chargement de la liste des contacts du modèle grâce à la classe de service
-            List<Personne> lst = PersonneSingleton.Instance.ListPersonnes;
+            get { return cs; }
+        }
 
-            //ajout de chaque contact dans l'ObservableCollection 
-            //via l'instanciation d'une vue modele pour chacun d'eux
-            listeContacts = new ObservableCollection<ContactVueModele>();
+        public void GetListeContacts()
+        {
+
+            //Chargement de la liste des contacts du modèle grâce à la classe de service
+            List<Personne> lst = CS.ChargerListeContacts();
+            listeContacts.Clear();
+
             foreach (Personne person in lst)
             {
                 listeContacts.Add(new ContactVueModele(person, this));
             }
-
             //définition de la collection view
             collectionView = CollectionViewSource.GetDefaultView(listeContacts);
             //ajout de l'événement à déclencher quand la vue courante change
@@ -39,6 +44,15 @@ namespace TDMVVM.ViewModels
 
             //on se place sur le 1er élément
             collectionView.MoveCurrentToFirst();
+        }
+
+        public ListeContactsVueModele()
+        {
+            //ajout de chaque contact dans l'ObservableCollection 
+            //via l'instanciation d'une vue modele pour chacun d'eux
+            listeContacts = new ObservableCollection<ContactVueModele>();
+
+            GetListeContacts();
         }
 
         private void OnCollectionViewCurrentChanged(object sender, EventArgs e)
@@ -171,6 +185,30 @@ namespace TDMVVM.ViewModels
                 }
             }
 
+        }
+
+
+        private RelayCommand commandeNouvelAmi;
+        public ICommand CommandeNouvelAmi
+        {
+            get
+            {
+                if (commandeNouvelAmi == null)
+                {
+                    commandeNouvelAmi = new RelayCommand(GoNouvelAmi, CanGoNouvelAmi);
+                }
+                return commandeNouvelAmi;
+            }
+        }
+        public void GoNouvelAmi()
+        {
+            Console.WriteLine(ContactSelected.Contact);
+           new ContactVueModele(null,this);
+            Console.WriteLine(ContactSelected.Contact);
+        }
+        public bool CanGoNouvelAmi()
+        {
+                return true;
         }
     }
 }

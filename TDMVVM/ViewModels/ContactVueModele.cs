@@ -16,6 +16,7 @@ namespace TDMVVM.ViewModels
         public Personne Contact
         {
             get { return contact; }
+            set => contact = value;
         }
 
         public string Identite
@@ -49,10 +50,6 @@ namespace TDMVVM.ViewModels
         //Initialisation de la vue modèle avec l'entité modèle
         public ContactVueModele(Personne personne, ListeContactsVueModele parent)
         {
-            if (personne == null)
-            {
-                throw new NullReferenceException("Personne");
-            }
             contact = personne;
             _parent = parent;
         }
@@ -95,7 +92,8 @@ namespace TDMVVM.ViewModels
         }
         public void SupprimerContact()
         {
-            _parent.ListeContacts.Remove(this);
+            _parent.CS.Supprimer(Contact);
+            _parent.GetListeContacts();
             System.Windows.MessageBox.Show("Suppression du contact");
         }
     }

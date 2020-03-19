@@ -16,11 +16,18 @@ namespace ContactDLL.Services
         }
         public List<Personne> seed()
         {
+            ContactService cs = new ContactService();
             List<Personne> listPersonnes = new List<Personne>();
             for (int i = 0; i < 25; i++)
             {
-                listPersonnes.Add(new Ami(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), faker.Date.Past(), faker.Phone.PhoneNumberFormat()));
-                listPersonnes.Add(new Client(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), Int32.Parse(faker.Finance.Account()), faker.Random.Guid().ToString(), faker.Date.Past()));
+                Ami ami = new Ami(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), faker.Date.Past(), faker.Phone.PhoneNumberFormat());
+                Client client = new Client(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), Int32.Parse(faker.Finance.Account()), faker.Random.Guid().ToString(), faker.Date.Past());
+                
+                listPersonnes.Add(ami);
+                listPersonnes.Add(client);
+
+                cs.AjouterContact(ami);
+                cs.AjouterContact(client);
             }
             return listPersonnes;
         }
