@@ -21,6 +21,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Nom"/>
@@ -28,17 +30,35 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Téléphone"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Email"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Adresse"/>
-        <TextBox Text="{Binding Contact.Nom}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Contact.Prenom}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Contact.Telephone}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
-        <TextBox Text="{Binding Contact.Email}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Contact.Adresse}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox Text="{Binding Contact.Nom ,Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxNom"/>
+        <TextBox Text="{Binding Contact.Prenom ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxPrenom"/>
+        <TextBox Text="{Binding Contact.Telephone ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxTelephone"/>
+        <TextBox Text="{Binding Contact.Email ,Mode=TwoWay}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxEmail"/>
+        <TextBox Text="{Binding Contact.Adresse ,Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Name="textBoxAdresse"/>
         <Label   Grid.Row="5" Grid.Column="0" Content="Guid"
              Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.Guid}"
+        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.Guid ,Mode=TwoWay}"
+             Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" Name="textBoxGuid"/>
+        <Label   Grid.Row="6" Grid.Column="0" Content="Ancienneté"
              Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <Button Command="{Binding CommandeEnregistrer}"  Content="Enregistrer" Grid.Row="6" Grid.Column="1" Margin="10 0"/>
-        <Button Command="{Binding CommandeSupprimer}"  Content="Supprimer" Grid.Row="6" Grid.Column="2" Margin="10 0"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.Anciennete,Mode=TwoWay}"
+             Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" Name="textBoxAnciennete"/>
+        <Label   Grid.Row="7" Grid.Column="0" Content="N° Client"
+             Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.NumClient,Mode=TwoWay}"
+             Visibility="{Binding EstClient, Converter={StaticResource BoolToVisibilityConverter}}" Name="textBoxNumClient"/>
+
+        <Label   Grid.Row="5" Grid.Column="0" Content="Anniversaire"
+             Visibility="{Binding EstAmi, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.Anniversaire,Mode=TwoWay}"
+             Visibility="{Binding EstAmi, Converter={StaticResource BoolToVisibilityConverter}}" Name="textBoxAnniversaire"/>
+        <Label   Grid.Row="6" Grid.Column="0" Content="Tel Perso"
+             Visibility="{Binding EstAmi, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Contact.TelPerso,Mode=TwoWay}"
+             Visibility="{Binding EstAmi, Converter={StaticResource BoolToVisibilityConverter}}" Name="textBoxTelPerso"/>
+
+        <Button Command="{Binding CommandeEnregistrer}"  Content="Enregistrer" Grid.Row="8" Grid.Column="1" Margin="10 0"/>
+        <Button Command="{Binding CommandeSupprimer}"  Content="Supprimer" Grid.Row="8" Grid.Column="2" Margin="10 0"/>
 
        
 

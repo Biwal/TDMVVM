@@ -22,7 +22,7 @@ namespace ContactDLL.Services
                 listPersonnes.Add(new Ami(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), faker.Date.Past(), faker.Phone.PhoneNumberFormat()));
                 listPersonnes.Add(new Client(faker.Name.LastName(), faker.Name.FirstName(), faker.Internet.Email(), faker.Address.FullAddress(), faker.Phone.PhoneNumberFormat(), Int32.Parse(faker.Finance.Account()), faker.Random.Guid().ToString(), faker.Date.Past()));
             }
-            return listPersonnes.OrderBy(a=>a.Nom).ToList();
+            return listPersonnes;
         }
     }
 }

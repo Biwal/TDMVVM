@@ -42,14 +42,19 @@ namespace TDMVVM.ViewModels
             }
         }
 
+        private readonly ListeContactsVueModele _parent;
+
+        public ListeContactsVueModele Parent => _parent;
+
         //Initialisation de la vue modèle avec l'entité modèle
-        public ContactVueModele(Personne personne)
+        public ContactVueModele(Personne personne, ListeContactsVueModele parent)
         {
             if (personne == null)
             {
                 throw new NullReferenceException("Personne");
             }
             contact = personne;
+            _parent = parent;
         }
 
         private RelayCommand commandeEnregistrer;
@@ -58,13 +63,25 @@ namespace TDMVVM.ViewModels
             get
             {
                 if (commandeEnregistrer == null) commandeEnregistrer = new RelayCommand(EnregistrerContact);
+
                 return commandeEnregistrer;
             }
         }
         public void EnregistrerContact()
         {
             // La persistance sera gérée dansle prochain TD
+            if (Contact == null) AddContact();
+            if (EstAmi) PutAmi();
+            if (EstClient) Console.WriteLine("clicli");
             System.Windows.MessageBox.Show("Enregistrement du contact");
+        }
+
+        public void AddContact()
+        {
+
+        }
+        public void PutAmi()
+        {
         }
 
         private RelayCommand commandeSupprimer;
@@ -78,6 +95,7 @@ namespace TDMVVM.ViewModels
         }
         public void SupprimerContact()
         {
+            _parent.ListeContacts.Remove(this);
             System.Windows.MessageBox.Show("Suppression du contact");
         }
     }

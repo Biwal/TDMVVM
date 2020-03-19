@@ -29,7 +29,7 @@ namespace TDMVVM.ViewModels
             listeContacts = new ObservableCollection<ContactVueModele>();
             foreach (Personne person in lst)
             {
-                listeContacts.Add(new ContactVueModele(person));
+                listeContacts.Add(new ContactVueModele(person, this));
             }
 
             //définition de la collection view
