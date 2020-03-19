@@ -66,10 +66,8 @@ namespace TDMVVM.ViewModels
         }
         public void EnregistrerContact()
         {
-            // La persistance sera gérée dansle prochain TD
-            if (Contact == null) AddContact();
-            if (EstAmi) PutAmi();
-            if (EstClient) Console.WriteLine("clicli");
+            _parent.CS.AjouterContact(Contact);
+            _parent.GetListeContacts();
             System.Windows.MessageBox.Show("Enregistrement du contact");
         }
 

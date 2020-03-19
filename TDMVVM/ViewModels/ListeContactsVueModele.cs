@@ -28,7 +28,6 @@ namespace TDMVVM.ViewModels
 
         public void GetListeContacts()
         {
-
             //Chargement de la liste des contacts du modèle grâce à la classe de service
             List<Personne> lst = CS.ChargerListeContacts();
             listeContacts.Clear();
@@ -41,7 +40,6 @@ namespace TDMVVM.ViewModels
             collectionView = CollectionViewSource.GetDefaultView(listeContacts);
             //ajout de l'événement à déclencher quand la vue courante change
             collectionView.CurrentChanged += OnCollectionViewCurrentChanged;
-
             //on se place sur le 1er élément
             collectionView.MoveCurrentToFirst();
         }
