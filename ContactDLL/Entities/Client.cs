@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ContactDLL
@@ -23,11 +25,12 @@ namespace ContactDLL
             Guid = guid;
             Anciennete = anciennete;
         }
-
+        [Column("noclient")]
         public int NumClient { get => numClient; set => numClient = value; }
-
+        [Column("guid")]
+        [StringLength(80)]
         public string Guid { get => guid; set => guid = value; }
-
+        [Column("date")]
         public DateTime Anciennete { get => anciennete; set => anciennete = value; }
 
         public override string ToString()

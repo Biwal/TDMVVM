@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using TDMVVM.Services;
 
 namespace TDMVVM.ViewModels
 {
@@ -30,7 +31,7 @@ namespace TDMVVM.ViewModels
         public void GetListeContacts()
         {
             //Chargement de la liste des contacts du modèle grâce à la classe de service
-            List<Personne> lst = CS.ChargerListeContacts();
+            List<Personne> lst = ContactEFService.Instance.ChargerListeContacts();
             listeContacts.Clear();
 
             foreach (Personne person in lst)

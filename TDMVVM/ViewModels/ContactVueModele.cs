@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TDMVVM.Services;
 
 namespace TDMVVM.ViewModels
 {
@@ -66,7 +67,7 @@ namespace TDMVVM.ViewModels
         }
         public void EnregistrerContact()
         {
-            _parent.CS.AjouterContact(Contact);
+            ContactEFService.Instance.EnregistrerContact(Contact);
             _parent.GetListeContacts();
 
             System.Windows.MessageBox.Show("Enregistrement du contact");
@@ -84,7 +85,7 @@ namespace TDMVVM.ViewModels
         }
         public void SupprimerContact()
         {
-            _parent.CS.Supprimer(Contact);
+            ContactEFService.Instance.SupprimerContact(Contact);
             _parent.GetListeContacts();
             System.Windows.MessageBox.Show("Suppression du contact");
         }

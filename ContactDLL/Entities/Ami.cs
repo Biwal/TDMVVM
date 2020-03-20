@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ContactDLL
@@ -23,9 +25,10 @@ namespace ContactDLL
             Anniversaire = anniversaire;
             TelPerso = telPerso;
         }
-        
+        [Column("date")]
         public DateTime Anniversaire { get => anniversaire; set => anniversaire = value; }
-
+        [Column("telperso")]
+        [StringLength(20)]
         public string TelPerso { get => telPerso; set => telPerso = value; }
 
         public override string ToString()
