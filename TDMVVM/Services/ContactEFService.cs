@@ -53,7 +53,7 @@ namespace TDMVVM.Services
                 {
                     if (contact.GetType() == typeof(Client)) context.Clients.Attach((Client)contact);
                     else context.Amis.Attach((Ami)contact);
-
+                    context.Entry(contact).State = EntityState.Modified;
                 }
                 else
                 {
